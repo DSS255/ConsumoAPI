@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>AnimeDEX - Consumo de API</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+<div id="app">
+    <button @click="fetchAnimes">Chamar Animes</button>
+    <input type="text" v-model="searchText" placeholder="Procure seu anime">
+    <div class="anime-container">
+        <ul>
+            <li v-for="anime in filteredAnimes" :key="anime.mal_id">
+                <div class="anime-card">
+                    <h1>{{ anime.title }}</h1>
+                    <img :src="anime.images.jpg.image_url" alt="">
+                    <div v-if="anime.showDetails" class="details">
+                        <p>{{ anime.synopsis }}</p>
+                        <p>Episódios: {{ anime.episodes }}</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script src="index.js"></script>
+</body>
+</html>
